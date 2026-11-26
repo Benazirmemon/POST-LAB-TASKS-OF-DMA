@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    int *hours;
+    int *vehicleno;
+    int n,totalhours=0,addveh;
+    printf("enter the  intial no of vehicle");
+    scanf("%d",&n);
+    hours=(int*)calloc(n,sizeof(int));
+    vehicleno=(int*)calloc(n,sizeof(int));
+    if(hours==NULL && vehicleno==NULL){
+        printf("memory allocation failed");
+    }
+    else{
+        printf("memory allocation successfully");
+        for(int i=0;i<n;i++){
+            printf("vehicle %d\n",i+1);
+            printf("enter the parking hours");
+            scanf("%d",&hours[i]);
+            printf("enter the no of vehicles");
+            scanf("%d",&vehicleno[i]);
+        }
+         for(int i=0;i<n;i++){
+            printf("hours %d\n no of vehicle %d\n",hours[i],vehicleno[i]);
+         }
+        printf("enter the no of additional vehicles");
+        scanf("%d",&addveh);
+        if(hours>=0)
+    hours=(int*)realloc(hours,n*sizeof(int));
+    vehicleno=(int*)realloc(vehicleno,n*sizeof(int));
+        for(int i=n;i<addveh;i++)
+            {
+                hours[i]=0;
+            }
+        for(int i=n;i<addveh;i++){
+             printf("vehicle %d\n",i+1);
+            printf("enter the parking hours");
+            scanf("%d",&hours[i]);
+            printf("enter the no of vehicles");
+            scanf("%d",&vehicleno[i]);
+    }
+        for(int i=0;i<addveh;i++){
+             printf("hours %d\n no of vehicles %d\n",hours[i],vehicleno[i]);
+            totalhours+=hours[i];
+         }
+        printf(" total hours%d",totalhours);
+        free(hours);
+        free(vehicleno);
+    }
+}
+        
