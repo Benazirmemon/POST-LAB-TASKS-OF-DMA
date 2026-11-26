@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    int *noofdays;
+    int *regno;
+    int morepat;
+    int n,total;
+    printf("enter the  number of patient");
+    scanf("%d",&n);
+   
+    noofdays=(int*)malloc(n*sizeof(int));
+    regno=(int*)malloc(n*sizeof(int));
+    if(noofdays==NULL && regno==NULL){
+        printf("memory allocation failed");
+    }
+    else{
+        printf("memory allocation successfully");
+        for(int i=0;i<n;i++){
+            printf("patient %d \n",i+1);
+            printf("enter the no of days");
+            scanf("%d",&noofdays[i]);
+            printf("enter the reg no");
+            scanf("%d",&regno[i]);
+            
+        }
+         for(int i=0;i<n;i++){
+             printf(" no of days %d\n reg no %d\n",noofdays[i],regno[i]);
+    }
+        printf("enter the more patient to admitted");
+        scanf("%d",&morepat);
+    noofdays=(int*)realloc(noofdays,n*sizeof(int));
+    regno=(int*)realloc(regno,n*sizeof(int));
+        for(int i=n;i<morepat;i++){
+            printf("enter the no of days");
+            scanf("%d",&noofdays[i]);
+            printf("enter the reg no");
+            scanf("%d",&regno[i]);
+            
+        }
+        printf("updated information");
+         for(int i=0;i<morepat;i++){
+             printf("reg no %d\n no of days %d\n",regno[i],noofdays[i]);
+             total+=noofdays[i];
+         }
+       
+        
+        free(regno);
+        free(noofdays);
+    }
+            
+}
