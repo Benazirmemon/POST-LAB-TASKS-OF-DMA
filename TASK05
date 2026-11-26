@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *studentID;
+    int n, addStudents, cancelID, found = 0;
+
+   
+    printf("Enter initial number of registered students ");
+    scanf("%d", &n);
+
+    studentID = (int*)malloc(n * sizeof(int));
+
+    if (studentID == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    for (int i = 0; i < n; i++) {
+        printf("Enter Student %d ID: ", i + 1);
+        scanf("%d", &studentID[i]);
+    }
+
+
+    printf("\nEnter number of additional students to register ");
+    scanf("%d", &addStudents);
+
+
+
+    
+        studentID = (int*)realloc(studentID, n* sizeof(int));
+
+        
+
+        for (int i = n; i < addStudents; i++) {
+            printf("Enter New Student %d ID: ", i + 1);
+            scanf("%d", &studentID[i]);
+        }
+    
+
+   
+    printf("\nEnter Student ID to cancel registration  ");
+    scanf("%d", &cancelID);
+
+    if (cancelID != 0) {
+        for (int i = 0; i < addStudents; i++) {
+            if (studentID[i] == cancelID) {
+                found = 1;
+              
+                for (int j = i; j <addStudents-1;j++) {
+                    studentID[j] = studentID[j + 1];
+                }
+                addStudents--; 
+                printf("Student ID %d registration cancelled successfully!\n", cancelID);
+                break;
+            }
+        }
+        if (found == 0) {
+            printf("Student ID %d not found!\n", cancelID);
+        }
+    }
+
+    
+    printf("\n Remaining Registered Students (Active Count %d)\n", addStudents);
+    for (int i = 0; i < addStudents; i++) {
+        printf("Student %d ID: %d\n", i + 1, studentID[i]);
+    }
+
+    
+    free(studentID);
+
+}
