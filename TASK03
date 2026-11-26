@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    int *id;
+    int *nooftickets;
+    int n,addcust,total=0;
+    printf("enter the no of customer");
+    scanf("%d",&n);
+    id=(int*)malloc(n*sizeof(int));
+    nooftickets=(int*)malloc(n*sizeof(int));
+    if(id==NULL && nooftickets==NULL){
+        printf("memory allocation failed");
+    }
+    else{
+        printf("memory allocation successfully");
+        for(int i=0;i<n;i++){
+            printf("customer %d\n",i+1);
+            printf("enter the id");
+            scanf("%d",&id[i]);
+            printf("enter the no of tickets");
+            scanf("%d",&nooftickets[i]);
+        }
+         for(int i=0;i<n;i++){
+            printf("id %d\n no of tickets %d\n",id[i],nooftickets[i]);
+         }
+        printf("enter the no of additional customers for bookings");
+        scanf("%d",&addcust);
+    id=(int*)realloc(id,n*sizeof(int));
+    nooftickets=(int*)realloc(nooftickets,n*sizeof(int));
+        for(int i=n;i<addcust;i++){
+             printf("customer %d\n",i+1);
+            printf("enter the id");
+            scanf("%d",&id[i]);
+            printf("enter the no of tickets");
+            scanf("%d",&nooftickets[i]);
+    }
+        for(int i=0;i<addcust;i++){
+             printf("id %d\n no of tickets %d\n",id[i],nooftickets[i]);
+            total+=nooftickets[i];
+         }
+        printf("%d",total);
+        free(id);
+        free(nooftickets);
+    }
+}
+        
